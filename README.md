@@ -46,29 +46,48 @@ Meeting Qualifier moves them toward a call
 
 ## Install
 
-**Claude Code:**
+### 1. Get your Lynkgrids API key
+
+You need a Lynkgrids workspace with a connected LinkedIn seat.
+
+1. Sign up or log in at [lynkgrids.com](https://lynkgrids.com).
+2. Go to **Settings → Workspace → API keys** and create a **Read & write** key. It starts with `lgk_live_`.
+
+### 2. Put the key in your environment
+
+The plugin reads it from `LYNKGRIDS_API_KEY`, so set it before you start Claude Code:
+
+```bash
+export LYNKGRIDS_API_KEY=lgk_live_your_key
+```
+
+On Windows PowerShell:
+
+```powershell
+setx LYNKGRIDS_API_KEY "lgk_live_your_key"
+```
+
+Then open a new terminal so the variable is picked up.
+
+### 3. Install the plugin
 
 ```
 /plugin marketplace add lynkread/lynkgrids-sales-engine
 /plugin install sales-engine@lynkgrids-sales-engine
 ```
 
-**Other agents (Cursor, Codex, ...):** copy `skills/sales-engine/` into your agent's skills directory, point the MCP at `https://mcp.lynkgrids.com/mcp`, and use `AGENTS.md` as the entry point.
+The plugin's `.mcp.json` connects to `https://mcp.lynkgrids.com/mcp` and sends `Authorization: Bearer ${LYNKGRIDS_API_KEY}`.
 
-## Connect the Lynkgrids MCP
+### 4. Check it
 
-The plugin declares the hosted MCP in `.mcp.json`. You need a Lynkgrids workspace with a connected LinkedIn seat.
+Run `/sales-engine:setup`. It confirms the connection, then checks your profile, working hours, LinkedIn seat, and ICP, and asks for anything missing. If the key is missing or wrong, it tells you exactly what to do.
 
-1. In Lynkgrids, go to **Settings → Workspace → API keys** and create a **Read & write** key.
-2. Connect it:
-   - **Claude Code:**
-     ```bash
-     claude mcp add --transport http lynkgrids https://mcp.lynkgrids.com/mcp --header "Authorization: Bearer lgk_live_YOUR_TOKEN"
-     ```
-   - **claude.ai / Claude Desktop:** add a custom connector for `https://mcp.lynkgrids.com/mcp`. The OAuth flow asks for your key once.
-3. Run `/sales-engine:setup`. It checks your profile, working hours, LinkedIn seat, and ICP, and asks for anything missing.
+### Other places
 
-Keep the key in the connector or your MCP config. Never commit it or paste it into `icp-context.md`.
+- **claude.ai / Claude Desktop:** add a custom connector for `https://mcp.lynkgrids.com/mcp`. The sign-in flow asks for your key once.
+- **Cursor, Codex, other agents:** copy `skills/sales-engine/` into your agent's skills directory, point the MCP at `https://mcp.lynkgrids.com/mcp` with the header `Authorization: Bearer <your key>`, and use `AGENTS.md` as the entry point.
+
+Keep the key in your environment or connector. Never commit it, paste it into chat, or put it in `icp-context.md`.
 
 Without the MCP the agents can still research and draft, but they can't read your CRM, import leads, launch campaigns, or handle replies.
 
