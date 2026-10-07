@@ -83,4 +83,5 @@ owner_agent:
 - Cap a single run at 50 new prospects unless the user set another number.
 - Never relaunch or `run_campaign_now` to "see what happens". Pipeline Analyst first.
 - If MCP errors, stop mutating. Report the error. Continue with research or drafting if useful.
+- If a tool says the workspace has no plan, the plan ended, or a limit was reached, stop the run, show the message and link, and offer `get_subscription_link`. Never work around a plan limit.
 - If the weekly invite cap is hit, park connection requests until next week and say so.

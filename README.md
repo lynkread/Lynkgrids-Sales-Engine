@@ -46,7 +46,7 @@ Meeting Qualifier moves them toward a call
 
 ## Install
 
-You need a Lynkgrids workspace with a connected LinkedIn seat. If you don't have one yet, you can create it during sign-in.
+You need a Lynkgrids workspace with a plan and a connected LinkedIn seat. If you don't have an account yet, you create one, and choose a plan, during sign-in.
 
 ### 1. Install the plugin
 
@@ -57,17 +57,24 @@ You need a Lynkgrids workspace with a connected LinkedIn seat. If you don't have
 
 ### 2. Sign in to Lynkgrids
 
-Run `/mcp`, pick **lynkgrids**, and choose **Authenticate**. A Lynkgrids page opens in your browser: sign in (or create an account) and approve the connection. Claude Code picks up the access automatically and keeps it refreshed. There's no key to copy.
+Run `/mcp`, pick **lynkgrids**, and choose **Authenticate**. Your browser opens the Lynkgrids connect page:
 
-If the page asks for an API key, create one in Lynkgrids under **Settings → Workspace → API keys** (Read & write) and paste it into that browser page, never into Claude.
+1. Click **Continue to Lynkgrids**.
+2. Sign in, or create an account and confirm your email.
+3. If your workspace has no plan yet, pick one or start a trial. Payment is handled by Razorpay, in the browser.
+4. Click **Allow**.
+
+Lynkgrids creates a Read & write key named "Claude" for the connection and sends you back. Claude Code keeps the access refreshed. You never copy a key.
+
+Already have an API key? Choose **Use an API key instead** on the connect page and paste it there, never into Claude.
 
 ### 3. Check it
 
-Run `/sales-engine:setup`. It confirms the connection, then checks your profile, working hours, LinkedIn seat, and ICP, and asks for anything missing. If you aren't signed in, it tells you how.
+Run `/sales-engine:setup`. It confirms the connection and your plan, then checks your profile, working hours, LinkedIn seat, and ICP, and asks for anything missing. If you aren't signed in or have no plan, it tells you what to do.
 
 ### Other places
 
-- **claude.ai / Claude Desktop:** add a custom connector for `https://mcp.lynkgrids.com/mcp` and click **Connect**.
+- **claude.ai / Claude Desktop:** add a custom connector for `https://mcp.lynkgrids.com/mcp` and click **Connect**. The same sign-in page opens.
 - **Cursor, Codex, other agents:** copy `skills/sales-engine/` into your agent's skills directory, add the MCP at `https://mcp.lynkgrids.com/mcp` (browser sign-in), and use `AGENTS.md` as the entry point.
 
 ### Fallback: API key
@@ -81,6 +88,17 @@ claude mcp add --transport http lynkgrids-key https://mcp.lynkgrids.com/mcp --he
 If you do this in Claude Code alongside the plugin, disable the plugin's `lynkgrids` server in `/mcp` so the tools don't appear twice. Never commit the key, paste it into chat, or put it in `icp-context.md`.
 
 Without the MCP the agents can still research and draft, but they can't read your CRM, import leads, launch campaigns, or handle replies.
+
+## Plans and billing
+
+The connector works on a workspace with an active plan or trial.
+
+- **No plan yet:** the sign-in page takes you through the plan picker before you click Allow.
+- **Plan ended:** the workspace turns read-only. Lookups still work; anything that changes or sends something is refused, with a link to renew.
+- **Limits and features:** if an action hits a plan limit, or uses a feature your plan doesn't include, Claude shows the message and a link to upgrade.
+- **Upgrade any time:** ask "upgrade my plan" or "what plan am I on?". Claude calls `get_subscription_link` and gives you your billing link and plan status.
+
+Payment always happens in your browser, on the Lynkgrids billing page. Claude never asks for or enters card details. If you came through a Lynkgrids partner, the links point to your partner's app and billing.
 
 ## First five minutes
 

@@ -6,7 +6,7 @@ Read `skills/sales-engine/SKILL.md` first, then load ONLY the module the task ne
 
 **Before any work:** read `icp-context.md` if it exists (project root, `.claude/`, or `.agents/`). It holds the product, ICP, disqualifiers, proof, voice, and send policy. If absent, proceed, say the output is un-contextualised, and offer to create it from `skills/sales-engine/icp-context.template.md`.
 
-**MCP first:** if Lynkgrids tools are connected, call `whoami` and `setup_status` before anything else, and `search_knowledge` before writing any copy. Do not invent contacts, emails, campaign stats, or replies. If the MCP is missing or returns an auth error, tell the user to sign in through the MCP's browser flow (in Claude Code: `/mcp` → lynkgrids → Authenticate). Never ask for an API key in chat. Until then, research and draft only; never claim a live send happened.
+**MCP first:** if Lynkgrids tools are connected, call `whoami` and `setup_status` before anything else, and `search_knowledge` before writing any copy. Do not invent contacts, emails, campaign stats, or replies. If the MCP is missing or returns an auth error, tell the user to sign in through the MCP's browser flow (in Claude Code: `/mcp` → lynkgrids → Authenticate). Never ask for an API key in chat. If a tool says the workspace has no plan, its plan ended, or a limit was reached, show that message and link and stop; for subscribe or upgrade requests call `get_subscription_link`. Payment always happens in the browser. Until then, research and draft only; never claim a live send happened.
 
 ## Routing
 

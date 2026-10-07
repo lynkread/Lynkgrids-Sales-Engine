@@ -33,6 +33,7 @@ If the user says "just DM them now", prefer campaign membership over one-off sen
 - "This user is not a relation" → not 1st-degree. Offer a connection request; do not retry the DM.
 - "Invalid parameters" on a connect → usually the weekly invite cap. Stop invites for the week; report how many are parked.
 - Auth errors → stop and ask the user to reconnect the MCP.
+- No plan, plan ended (read-only), or a plan limit → stop, show the message and its billing link, and report what was not sent.
 
 ## Output
 

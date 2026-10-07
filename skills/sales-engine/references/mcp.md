@@ -1,6 +1,6 @@
 # Lynkgrids MCP tool map
 
-Hosted server: `https://mcp.lynkgrids.com/mcp`. Auth is browser sign-in (MCP OAuth): in Claude Code, `/mcp` → lynkgrids → Authenticate. Headless clients can instead send a **Read & write** API key (Settings → Workspace → API keys) as `Authorization: Bearer`. Never paste a key into chat or a file.
+Hosted server: `https://mcp.lynkgrids.com/mcp`. Auth is browser sign-in (MCP OAuth): in Claude Code, `/mcp` → lynkgrids → Authenticate → **Continue to Lynkgrids** → sign in or sign up → plan if needed → **Allow**. Headless clients can instead send a **Read & write** API key (Settings → Workspace → API keys) as `Authorization: Bearer`. Never paste a key into chat or a file.
 
 Call tools by their live names as the server advertises them. This file is a map, not a contract. If the server lists a different name, use the live one. For any route without a curated tool, read the `lynkgrids://api-guide` resource and use `lynkgrids_request`.
 
@@ -17,6 +17,7 @@ Call tools by their live names as the server advertises them. This file is a map
 | `list_linkedin_accounts` | Which LinkedIn seats exist; `linkedinAccountId` is the `account_id` for sends |
 | `workspace_overview` | One-call status of contacts, campaigns, agents |
 | `todays_plan` | What is queued to go out today |
+| `get_subscription_link` | The user's billing link and plan status (none / trial / active / expired). Use for subscribe, upgrade, renew. Payment happens in the browser |
 
 ## Knowledge
 
@@ -113,4 +114,5 @@ Standard campaign shape: connection request → accepted → message 1 → wait 
 4. "This user is not a relation" → not 1st-degree. Offer a connection request; do not retry the DM.
 5. "Invalid parameters" on a connect is usually the weekly invite cap. Stop invites for the week and say so.
 6. On auth errors, stop and tell the user to reconnect the MCP. Do not loop sends.
-7. Never log or echo the API token.
+7. Plan answers (no plan, plan ended / read-only, limit reached, feature not on the plan) come back as plain messages with a billing link. Show them to the user, stop mutating, and don't retry. Never handle card details.
+8. Never log or echo the API token.

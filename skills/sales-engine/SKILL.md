@@ -23,7 +23,9 @@ Three rules hold across every module:
 
 **Confirm MCP.** If Lynkgrids tools are available, call `whoami` and `setup_status` once per session before mutating anything. If `setup_status` reports the workspace incomplete, run the setup interview it returns (one question at a time: profile → working hours → LinkedIn seat → ICP via `save_icp`) before any outbound.
 
-**No connection?** If the Lynkgrids tools are missing or `whoami` returns an auth error, the user isn't signed in. Tell them: run `/mcp`, pick **lynkgrids**, choose **Authenticate**, and sign in (or create an account) on the Lynkgrids page that opens, then run `/sales-engine:setup`. Never ask for an API key in chat; if they paste one, don't repeat or store it, and suggest rotating it. Until connected, research and draft only, and say so.
+**No connection?** If the Lynkgrids tools are missing or `whoami` returns an auth error, the user isn't signed in. Tell them: run `/mcp`, pick **lynkgrids**, choose **Authenticate**, click **Continue to Lynkgrids** on the page that opens, sign in or create an account, pick a plan if asked, and click **Allow**; then run `/sales-engine:setup`. Never ask for an API key in chat; if they paste one, don't repeat or store it, and suggest rotating it. Until connected, research and draft only, and say so.
+
+**Plans.** If a tool says the workspace has no plan, its plan has ended (read-only), a limit was reached, or a feature isn't on the plan, show that message and its link to the user, and stop changing things; don't retry. When the user asks to subscribe, upgrade, renew, or see their plan, call `get_subscription_link` and share the link. Payment always happens in the browser: never ask for, accept, or enter card details.
 
 **Load the voice.** Before writing any copy or reply, call `search_knowledge` for the workspace's message rules and proof. State only facts it returns.
 
