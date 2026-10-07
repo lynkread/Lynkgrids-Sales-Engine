@@ -1,0 +1,8 @@
+.DS_Store
+desktop.ini
+*.zip
+node_modules/
+icp-context.md
+.env
+.env.*
+!.env.example

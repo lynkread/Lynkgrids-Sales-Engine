@@ -1,0 +1,25 @@
+{
+  "name": "lynkgrids-sales-engine",
+  "owner": {
+    "name": "Lynkgrids",
+    "url": "https://lynkgrids.com"
+  },
+  "metadata": {
+    "description": "Lynkgrids Sales Engine: a full LinkedIn outbound team as one Claude Code plugin, powered by the Lynkgrids MCP."
+  },
+  "plugins": [
+    {
+      "name": "sales-engine",
+      "source": "./",
+      "description": "A full AI sales department. 13 agents find, research, contact, and qualify prospects on LinkedIn through the Lynkgrids MCP.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Lynkgrids"
+      },
+      "homepage": "https://lynkgrids.com",
+      "license": "MIT",
+      "keywords": ["sales", "outbound", "linkedin", "sdr", "gtm", "mcp", "lynkgrids", "crm"],
+      "category": "productivity"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "name": "sales-engine",
+  "description": "A full AI sales department for Claude Code. 13 agents find, research, contact, and qualify LinkedIn prospects through the Lynkgrids MCP: Head of Sales, Signal Hunter, ICP Analyst, Account Researcher, Lead Enricher, Intent Scorer, LinkedIn Copywriter, Outreach Operator, Reply Agent, Follow-up Agent, Meeting Qualifier, Pipeline Analyst, Sales Manager.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Lynkgrids",
+    "url": "https://lynkgrids.com"
+  },
+  "homepage": "https://lynkgrids.com",
+  "repository": "https://github.com/lynkread/lynkgrids-sales-engine",
+  "license": "MIT",
+  "keywords": ["sales", "outbound", "linkedin", "sdr", "gtm", "mcp", "lynkgrids", "crm", "prospecting", "pipeline"]
+}
