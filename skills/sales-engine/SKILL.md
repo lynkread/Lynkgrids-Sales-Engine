@@ -23,7 +23,7 @@ Three rules hold across every module:
 
 **Confirm MCP.** If Lynkgrids tools are available, call `whoami` and `setup_status` once per session before mutating anything. If `setup_status` reports the workspace incomplete, run the setup interview it returns (one question at a time: profile → working hours → LinkedIn seat → ICP via `save_icp`) before any outbound.
 
-**No connection?** If the Lynkgrids tools are missing or `whoami` returns an auth error, the API key is missing or wrong. Tell the user: sign up or log in at https://lynkgrids.com, create a **Read & write** key under **Settings → Workspace → API keys**, set it as `LYNKGRIDS_API_KEY` in their environment, restart Claude Code, and run `/sales-engine:setup`. Never ask them to paste the key into chat; if they do, don't repeat or store it, and suggest rotating it. Until connected, research and draft only, and say so.
+**No connection?** If the Lynkgrids tools are missing or `whoami` returns an auth error, the user isn't signed in. Tell them: run `/mcp`, pick **lynkgrids**, choose **Authenticate**, and sign in (or create an account) on the Lynkgrids page that opens, then run `/sales-engine:setup`. Never ask for an API key in chat; if they paste one, don't repeat or store it, and suggest rotating it. Until connected, research and draft only, and say so.
 
 **Load the voice.** Before writing any copy or reply, call `search_knowledge` for the workspace's message rules and proof. State only facts it returns.
 

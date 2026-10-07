@@ -1,6 +1,6 @@
 # Lynkgrids MCP tool map
 
-Hosted server: `https://mcp.lynkgrids.com/mcp`. Auth is a workspace API token with **Read & write** scope (Settings → Workspace → API keys), supplied through the connector / OAuth flow. Never paste it into a file.
+Hosted server: `https://mcp.lynkgrids.com/mcp`. Auth is browser sign-in (MCP OAuth): in Claude Code, `/mcp` → lynkgrids → Authenticate. Headless clients can instead send a **Read & write** API key (Settings → Workspace → API keys) as `Authorization: Bearer`. Never paste a key into chat or a file.
 
 Call tools by their live names as the server advertises them. This file is a map, not a contract. If the server lists a different name, use the live one. For any route without a curated tool, read the `lynkgrids://api-guide` resource and use `lynkgrids_request`.
 
